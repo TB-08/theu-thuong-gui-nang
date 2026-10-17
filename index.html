@@ -1530,6 +1530,7 @@
     const SEG = ["needle","button","fabric","pattern","lucky","needle","button","fabric","lucky","pattern"];
 
     /* ---------------- BILINGUAL LOCALIZATION (VI / EN) ---------------- */
+    let busy = false;
     let currentLang = "vi";
     let lastResultKey = null;
 
@@ -1784,7 +1785,6 @@
 
     /* ---------------- WHEEL SPIN LOGIC ---------------- */
     let rotation = 0;
-    let busy = false;
 
     const setRot = r => {
       wheel.style.transform = `rotate(${r}deg)`;
