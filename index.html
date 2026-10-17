@@ -1531,6 +1531,8 @@
 
     /* ---------------- BILINGUAL LOCALIZATION (VI / EN) ---------------- */
     let busy = false;
+    let audioCtx = null;
+    let audioEnabled = true;
     let currentLang = "vi";
     let lastResultKey = null;
 
@@ -1712,8 +1714,6 @@
     };
 
     /* ---------------- WEB AUDIO SYNTHESIZER ---------------- */
-    let audioCtx = null;
-    let audioEnabled = true;
 
     function initAudio() {
       if (!audioCtx) {
