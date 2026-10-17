@@ -838,9 +838,9 @@
       top: calc(var(--w) * -0.18);
     }
     .f-br {
-      width: calc(var(--w) * 0.44);
-      right: calc(var(--w) * -0.18);
-      bottom: calc(var(--w) * -0.12);
+      width: calc(var(--w) * 0.52);
+      right: calc(var(--w) * -0.28);
+      bottom: calc(var(--w) * -0.13);
     }
     .f-bl {
       width: calc(var(--w) * 0.28);
@@ -854,7 +854,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      z-index: 50;
+      z-index: 70;
       pointer-events: none;
     }
 
@@ -1616,10 +1616,12 @@
       const introLede = $("introLede");
       if (introLede) introLede.innerHTML = t.lede;
 
-      if (!busy) {
-        spinLabel.textContent = t.spinBtn;
-      } else {
-        spinLabel.textContent = t.spinning;
+      const sLabel = $("spinLabel");
+      if (sLabel) {
+        sLabel.textContent = busy ? t.spinning : t.spinBtn;
+      }
+      if (spinBtn) {
+        spinBtn.setAttribute("aria-label", lang === "en" ? "Spin the wheel to receive challenge" : "Xoay vòng quay nhận thử thách");
       }
 
       audioText.textContent = audioEnabled ? t.soundOn : t.soundOff;
@@ -1918,6 +1920,8 @@
           setRot(0);
           busy = false;
           spinBtn.disabled = false;
+          const sLabel = $("spinLabel");
+          if (sLabel) sLabel.textContent = TEXTS[currentLang].spinBtn;
         }
       };
       requestAnimationFrame(frame);
@@ -2053,7 +2057,13 @@
       setTimeout(() => {
         burst(-1);
         burst(1);
-      }, 380);
+        sparkles();
+      }, 350);
+      setTimeout(() => {
+        burst(-1);
+        burst(1);
+        petals();
+      }, 700);
       if (!fxRunning) {
         fxRunning = true;
         requestAnimationFrame(drawFx);
